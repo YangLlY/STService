@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* CSS Document */
+body, p, dl, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend {
+	margin: 0;
+}
+
+input:active{/*文本框获取激活时的样式*/
+border:1px solid #4892e7;
+}
+input:focus{/*文本框获取焦点时的样式*/
+border:1px solid #4892e7;
+}
+ul,ol,fieldset{margin:0;padding:0;}
+table{font-size:inherit;}
+fieldset,img{border:none;}
+ul,ol,li{list-style:none;}
+html{overflow:auto\9;}
+body{font-size:12px;}
+html,body{background-color:#fff;}
+body,input,textarea,select,button{font-family:"lucida Grande",Verdana,"Microsoft YaHei";}
+input,textarea,select,button{font-size:inherit;}
+
+::-webkit-input-placeholder{color:#8b9096;}
+:-moz-placeholder{color:#8b9096;}
+
+.container{min-height:500px;}
+.header{height:62px;overflow:hidden;zoom:1;border-bottom:1px solid #d6dfea;background:#eff4fa;}
+.header_logo{float:left;_display:inline;width:182px;height:35px;margin-top:14px;margin-left:17px;background-repeat:no-repeat;background-position:left center;background-image:url(../img/header_logo.png)}
+
+.content{width:960px;margin:32px auto;padding:0 24px;}
+.content_wrapper{
+	width: 960px;
+	min-height: 372px;
+	padding-top: 40px;
+	margin-top: 0;
+	margin-right: 20px;
+	margin-left: 25px;
+	margin-bottom: 60px;
+*zoom:1;}
+
+
+
+.login_pictures{position:relative;width:565px;}
+.login_pictures_title{line-height:26px;margin-top:15px;margin-bottom:15px;font-size:24px;font-weight:normal;text-align:center;color:#6f95c8;}
+.login_pictures_picture{position:absolute;left:0;right:0;top:0;height:400px;background-repeat:no-repeat;background-position:bottom;background-image:url(../img/login_pictures_picture.png)}
+
+
+.login_container{
+	float: right;
+	border: 1px solid #a0b1c4;
+	width: 334px;
+	height: 334px;
+	background-color: #fff;
+	position: relative;
+	z-index: 12;
+	padding: 0;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.login_header{
+	left:53px;
+	height: 46px;
+	border-bottom: 1px solid #a0b1c4;
+	background-color:#f9fbfe;
+	font-size: 20px;
+	line-height:46px;
+	text-align:center;
+	color:#99a5a5;
+	}
+.login_tips{
+	position: relative;
+	min-height: 28px;
+	height:auto;
+	padding-top:4px;
+	
+	}
+	
+.login_form{
+	width: 284px;
+	height: 252px;
+	margin-left: 25px;
+	margin-right: 25px;
+	
+	}
+.loginform{
+	width:100%;
+	height:100%;
+	}
+
+.login_info{
+	
+	width:60px;
+	height:50px;
+	font-size: 20px;
+	line-height:50px;
+	text-align:center;
+	color:#99a5a5;
+	}
+
+.login_input{
+	width:140px;
+	height:50px;
+	font-size:15px;
+	border: 1px solid #a0b1c4;
+	border-radius: 5px;
+	}
+.height20{
+	
+	height:20px;
+	}
+	
+.login_button{
+	width:140px;
+	height:45px;
+	font-size: 20px;
+	line-height:45px;
+	color:#ffffff;
+	text-align:center;
+	border: 1px solid #5a98de;
+	background-color:#5a98de;
+	border-radius: 5px;
+	}

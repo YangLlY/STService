@@ -1,8 +1,11 @@
-package cn.edu.zjnu.STService.Dao;
+package cn.edu.zjnu.STService.Service;
 
 import cn.edu.zjnu.STService.Model.Firm;
 
-public interface FirmMapper {
+/**
+ * Created by yly on 2017/5/13.
+ */
+public interface IFirmService {
     Firm findOneByName(String name);
 
     int add(Firm record);

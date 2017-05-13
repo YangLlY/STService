@@ -1,12 +1,19 @@
 package cn.edu.zjnu.STService.Model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+
 public class Firm {
     private Integer id;
-
+    @NotBlank(message="公司名称不能为空")
     private String name;
-
+    @NotBlank(message = "公司地址不能为空")
     private String address;
-
+    @NotBlank(message = "邮政编码不能为空")
+    @Length(min = 6,max = 6,message = "邮政编码为6位数")
     private String postid;
 
     private String docurl;
@@ -16,9 +23,10 @@ public class Firm {
     private String account;
 
     private String accountno;
-
+    @NotNull(message = "公司所在城市不能为空")
     private Integer cityid;
 
+    @NotNull(message = "公司所在区（县）不能为空")
     private Integer countyid;
 
     public Firm(Integer id, String name, String address, String postid, String docurl, String openbank, String account, String accountno, Integer cityid, Integer countyid) {

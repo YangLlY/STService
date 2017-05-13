@@ -1,21 +1,17 @@
 package cn.edu.zjnu.STService.Dao;
 
 import cn.edu.zjnu.STService.Model.TestUser;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface TestUserMapper {
-    void deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);
 
-    void insert(TestUser record);
+    int insert(TestUser record);
 
-    void insertSelective(TestUser record);
+    int insertSelective(TestUser record);
 
     TestUser selectByPrimaryKey(Integer id);
 
-    TestUser selectByUserName(String userName);
+    int updateByPrimaryKeySelective(TestUser record);
 
-    void updateByPrimaryKeySelective(TestUser record);
-
-    void updateByPrimaryKey(TestUser record);
+    int updateByPrimaryKey(TestUser record);
 }

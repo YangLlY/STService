@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.ExtradirMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Extradir" >
+    <constructor >
+      <idArg column="ExtraDirId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="MaterialDirId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FirstUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SecondUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ExtraDirId, MaterialDirId, FirstUrl, SecondUrl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from extradir
+    where ExtraDirId = #{extradirid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from extradir
+    where ExtraDirId = #{extradirid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Extradir" >
+    insert into extradir (ExtraDirId, MaterialDirId, FirstUrl, 
+      SecondUrl)
+    values (#{extradirid,jdbcType=INTEGER}, #{materialdirid,jdbcType=INTEGER}, #{firsturl,jdbcType=VARCHAR}, 
+      #{secondurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Extradir" >
+    insert into extradir
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="extradirid != null" >
+        ExtraDirId,
+      </if>
+      <if test="materialdirid != null" >
+        MaterialDirId,
+      </if>
+      <if test="firsturl != null" >
+        FirstUrl,
+      </if>
+      <if test="secondurl != null" >
+        SecondUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="extradirid != null" >
+        #{extradirid,jdbcType=INTEGER},
+      </if>
+      <if test="materialdirid != null" >
+        #{materialdirid,jdbcType=INTEGER},
+      </if>
+      <if test="firsturl != null" >
+        #{firsturl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondurl != null" >
+        #{secondurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Extradir" >
+    update extradir
+    <set >
+      <if test="materialdirid != null" >
+        MaterialDirId = #{materialdirid,jdbcType=INTEGER},
+      </if>
+      <if test="firsturl != null" >
+        FirstUrl = #{firsturl,jdbcType=VARCHAR},
+      </if>
+      <if test="secondurl != null" >
+        SecondUrl = #{secondurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ExtraDirId = #{extradirid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Extradir" >
+    update extradir
+    set MaterialDirId = #{materialdirid,jdbcType=INTEGER},
+      FirstUrl = #{firsturl,jdbcType=VARCHAR},
+      SecondUrl = #{secondurl,jdbcType=VARCHAR}
+    where ExtraDirId = #{extradirid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Order" >
+    <constructor >
+      <idArg column="OrderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ProId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BguserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="TaskId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreatTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="OrderUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OrderId, ProId, BguserId, TaskId, CreatTime, OrderUrl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Order" >
+    insert into order (OrderId, ProId, BguserId, 
+      TaskId, CreatTime, OrderUrl
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{proid,jdbcType=INTEGER}, #{bguserid,jdbcType=INTEGER}, 
+      #{taskid,jdbcType=INTEGER}, #{creattime,jdbcType=TIMESTAMP}, #{orderurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        OrderId,
+      </if>
+      <if test="proid != null" >
+        ProId,
+      </if>
+      <if test="bguserid != null" >
+        BguserId,
+      </if>
+      <if test="taskid != null" >
+        TaskId,
+      </if>
+      <if test="creattime != null" >
+        CreatTime,
+      </if>
+      <if test="orderurl != null" >
+        OrderUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="proid != null" >
+        #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="bguserid != null" >
+        #{bguserid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderurl != null" >
+        #{orderurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Order" >
+    update order
+    <set >
+      <if test="proid != null" >
+        ProId = #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="bguserid != null" >
+        BguserId = #{bguserid,jdbcType=INTEGER},
+      </if>
+      <if test="taskid != null" >
+        TaskId = #{taskid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderurl != null" >
+        OrderUrl = #{orderurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Order" >
+    update order
+    set ProId = #{proid,jdbcType=INTEGER},
+      BguserId = #{bguserid,jdbcType=INTEGER},
+      TaskId = #{taskid,jdbcType=INTEGER},
+      CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      OrderUrl = #{orderurl,jdbcType=VARCHAR}
+    where OrderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

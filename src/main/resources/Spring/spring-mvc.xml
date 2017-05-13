@@ -13,11 +13,11 @@
     <mvc:resources mapping="/Static/**" location="/Static/"/>
     <!-- 定义controller的扫描包 -->
     <context:component-scan base-package="cn.edu.zjnu.STService.Controller"/>
-    <!-- 定义视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 定义视图解析器 (暂时不用)-->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/Jsp/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
     <!--上传文件bean配置-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!--设置上传文件大小-->

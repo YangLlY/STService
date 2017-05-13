@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.ContractMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Contract" >
+    <constructor >
+      <idArg column="ContId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FirmId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="BguserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreatTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="ContUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContpicURL" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ContId, FirmId, BguserId, CreatTime, ContUrl, ContpicURL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from contract
+    where ContId = #{contid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contract
+    where ContId = #{contid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Contract" >
+    insert into contract (ContId, FirmId, BguserId, 
+      CreatTime, ContUrl, ContpicURL
+      )
+    values (#{contid,jdbcType=INTEGER}, #{firmid,jdbcType=INTEGER}, #{bguserid,jdbcType=INTEGER}, 
+      #{creattime,jdbcType=TIMESTAMP}, #{conturl,jdbcType=VARCHAR}, #{contpicurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Contract" >
+    insert into contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contid != null" >
+        ContId,
+      </if>
+      <if test="firmid != null" >
+        FirmId,
+      </if>
+      <if test="bguserid != null" >
+        BguserId,
+      </if>
+      <if test="creattime != null" >
+        CreatTime,
+      </if>
+      <if test="conturl != null" >
+        ContUrl,
+      </if>
+      <if test="contpicurl != null" >
+        ContpicURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contid != null" >
+        #{contid,jdbcType=INTEGER},
+      </if>
+      <if test="firmid != null" >
+        #{firmid,jdbcType=INTEGER},
+      </if>
+      <if test="bguserid != null" >
+        #{bguserid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conturl != null" >
+        #{conturl,jdbcType=VARCHAR},
+      </if>
+      <if test="contpicurl != null" >
+        #{contpicurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Contract" >
+    update contract
+    <set >
+      <if test="firmid != null" >
+        FirmId = #{firmid,jdbcType=INTEGER},
+      </if>
+      <if test="bguserid != null" >
+        BguserId = #{bguserid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="conturl != null" >
+        ContUrl = #{conturl,jdbcType=VARCHAR},
+      </if>
+      <if test="contpicurl != null" >
+        ContpicURL = #{contpicurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ContId = #{contid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Contract" >
+    update contract
+    set FirmId = #{firmid,jdbcType=INTEGER},
+      BguserId = #{bguserid,jdbcType=INTEGER},
+      CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      ContUrl = #{conturl,jdbcType=VARCHAR},
+      ContpicURL = #{contpicurl,jdbcType=VARCHAR}
+    where ContId = #{contid,jdbcType=INTEGER}
+  </update>
+</mapper>

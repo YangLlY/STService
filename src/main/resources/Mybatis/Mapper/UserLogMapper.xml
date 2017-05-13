@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.UserLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.UserLog" >
+    <constructor >
+      <idArg column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UserName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="RoleId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="LoginIp" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OpTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="OpMemo" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, UserId, UserName, RoleId, LoginIp, OpTime, OpMemo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_log
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_log
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.UserLog" >
+    insert into user_log (Id, UserId, UserName, 
+      RoleId, LoginIp, OpTime, 
+      OpMemo)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{roleid,jdbcType=INTEGER}, #{loginip,jdbcType=VARCHAR}, #{optime,jdbcType=TIMESTAMP}, 
+      #{opmemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.UserLog" >
+    insert into user_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="userid != null" >
+        UserId,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="loginip != null" >
+        LoginIp,
+      </if>
+      <if test="optime != null" >
+        OpTime,
+      </if>
+      <if test="opmemo != null" >
+        OpMemo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null" >
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null" >
+        #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opmemo != null" >
+        #{opmemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.UserLog" >
+    update user_log
+    <set >
+      <if test="userid != null" >
+        UserId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="loginip != null" >
+        LoginIp = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="optime != null" >
+        OpTime = #{optime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opmemo != null" >
+        OpMemo = #{opmemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.UserLog" >
+    update user_log
+    set UserId = #{userid,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      RoleId = #{roleid,jdbcType=INTEGER},
+      LoginIp = #{loginip,jdbcType=VARCHAR},
+      OpTime = #{optime,jdbcType=TIMESTAMP},
+      OpMemo = #{opmemo,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

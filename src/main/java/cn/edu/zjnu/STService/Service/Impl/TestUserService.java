@@ -32,7 +32,7 @@ public class TestUserService implements ITestUserService {
     }
 
     public TestUser selectByUserName(String userName) {
-        return testUserMapper.selectByUserName(userName);
+        return null;
     }
 
     public void updateByPrimaryKeySelective(TestUser record) {

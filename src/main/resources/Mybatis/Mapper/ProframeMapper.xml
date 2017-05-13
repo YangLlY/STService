@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.ProframeMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Proframe" >
+    <constructor >
+      <idArg column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ProName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="BillStandard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Notice" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MgMethod" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PublicTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PublicUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="MaterialDirUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContractUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, ProName, BillStandard, Notice, MgMethod, PublicTitle, PublicUrl, MaterialDirUrl, 
+    ContractUrl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from proframe
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from proframe
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Proframe" >
+    insert into proframe (Id, ProName, BillStandard, 
+      Notice, MgMethod, PublicTitle, 
+      PublicUrl, MaterialDirUrl, ContractUrl
+      )
+    values (#{id,jdbcType=INTEGER}, #{proname,jdbcType=VARCHAR}, #{billstandard,jdbcType=VARCHAR}, 
+      #{notice,jdbcType=VARCHAR}, #{mgmethod,jdbcType=VARCHAR}, #{publictitle,jdbcType=VARCHAR}, 
+      #{publicurl,jdbcType=VARCHAR}, #{materialdirurl,jdbcType=VARCHAR}, #{contracturl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Proframe" >
+    insert into proframe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="proname != null" >
+        ProName,
+      </if>
+      <if test="billstandard != null" >
+        BillStandard,
+      </if>
+      <if test="notice != null" >
+        Notice,
+      </if>
+      <if test="mgmethod != null" >
+        MgMethod,
+      </if>
+      <if test="publictitle != null" >
+        PublicTitle,
+      </if>
+      <if test="publicurl != null" >
+        PublicUrl,
+      </if>
+      <if test="materialdirurl != null" >
+        MaterialDirUrl,
+      </if>
+      <if test="contracturl != null" >
+        ContractUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="billstandard != null" >
+        #{billstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="mgmethod != null" >
+        #{mgmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="publictitle != null" >
+        #{publictitle,jdbcType=VARCHAR},
+      </if>
+      <if test="publicurl != null" >
+        #{publicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="materialdirurl != null" >
+        #{materialdirurl,jdbcType=VARCHAR},
+      </if>
+      <if test="contracturl != null" >
+        #{contracturl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Proframe" >
+    update proframe
+    <set >
+      <if test="proname != null" >
+        ProName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="billstandard != null" >
+        BillStandard = #{billstandard,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        Notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="mgmethod != null" >
+        MgMethod = #{mgmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="publictitle != null" >
+        PublicTitle = #{publictitle,jdbcType=VARCHAR},
+      </if>
+      <if test="publicurl != null" >
+        PublicUrl = #{publicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="materialdirurl != null" >
+        MaterialDirUrl = #{materialdirurl,jdbcType=VARCHAR},
+      </if>
+      <if test="contracturl != null" >
+        ContractUrl = #{contracturl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Proframe" >
+    update proframe
+    set ProName = #{proname,jdbcType=VARCHAR},
+      BillStandard = #{billstandard,jdbcType=VARCHAR},
+      Notice = #{notice,jdbcType=VARCHAR},
+      MgMethod = #{mgmethod,jdbcType=VARCHAR},
+      PublicTitle = #{publictitle,jdbcType=VARCHAR},
+      PublicUrl = #{publicurl,jdbcType=VARCHAR},
+      MaterialDirUrl = #{materialdirurl,jdbcType=VARCHAR},
+      ContractUrl = #{contracturl,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

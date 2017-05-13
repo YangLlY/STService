@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Project" >
+    <constructor >
+      <idArg column="ProId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ProName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ContId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="FirmId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="OrderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="MaterialDirId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CreatTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="ProStatus" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ProId, ProName, ContId, FirmId, OrderId, MaterialDirId, CreatTime, ProStatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where ProId = #{proid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from project
+    where ProId = #{proid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Project" >
+    insert into project (ProId, ProName, ContId, 
+      FirmId, OrderId, MaterialDirId, 
+      CreatTime, ProStatus)
+    values (#{proid,jdbcType=INTEGER}, #{proname,jdbcType=VARCHAR}, #{contid,jdbcType=INTEGER}, 
+      #{firmid,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{materialdirid,jdbcType=INTEGER}, 
+      #{creattime,jdbcType=TIMESTAMP}, #{prostatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Project" >
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proid != null" >
+        ProId,
+      </if>
+      <if test="proname != null" >
+        ProName,
+      </if>
+      <if test="contid != null" >
+        ContId,
+      </if>
+      <if test="firmid != null" >
+        FirmId,
+      </if>
+      <if test="orderid != null" >
+        OrderId,
+      </if>
+      <if test="materialdirid != null" >
+        MaterialDirId,
+      </if>
+      <if test="creattime != null" >
+        CreatTime,
+      </if>
+      <if test="prostatus != null" >
+        ProStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proid != null" >
+        #{proid,jdbcType=INTEGER},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="contid != null" >
+        #{contid,jdbcType=INTEGER},
+      </if>
+      <if test="firmid != null" >
+        #{firmid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="materialdirid != null" >
+        #{materialdirid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prostatus != null" >
+        #{prostatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Project" >
+    update project
+    <set >
+      <if test="proname != null" >
+        ProName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="contid != null" >
+        ContId = #{contid,jdbcType=INTEGER},
+      </if>
+      <if test="firmid != null" >
+        FirmId = #{firmid,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null" >
+        OrderId = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="materialdirid != null" >
+        MaterialDirId = #{materialdirid,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="prostatus != null" >
+        ProStatus = #{prostatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ProId = #{proid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Project" >
+    update project
+    set ProName = #{proname,jdbcType=VARCHAR},
+      ContId = #{contid,jdbcType=INTEGER},
+      FirmId = #{firmid,jdbcType=INTEGER},
+      OrderId = #{orderid,jdbcType=INTEGER},
+      MaterialDirId = #{materialdirid,jdbcType=INTEGER},
+      CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      ProStatus = #{prostatus,jdbcType=VARCHAR}
+    where ProId = #{proid,jdbcType=INTEGER}
+  </update>
+</mapper>

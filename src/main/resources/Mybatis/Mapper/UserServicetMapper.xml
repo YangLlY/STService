@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.UserServicetMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.UserServicet" >
+    <constructor >
+      <idArg column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="UseName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="SvtId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RoleId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="RealName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="IdCard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PhoneNum" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="QQ" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CreatTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="IsDelet" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, UseName, Password, SvtId, RoleId, RealName, IdCard, PhoneNum, QQ, CreatTime, 
+    IsDelet
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_servicet
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_servicet
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.UserServicet" >
+    insert into user_servicet (Id, UseName, Password, 
+      SvtId, RoleId, RealName, 
+      IdCard, PhoneNum, QQ, 
+      CreatTime, IsDelet)
+    values (#{id,jdbcType=INTEGER}, #{usename,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{svtid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{realname,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{creattime,jdbcType=TIMESTAMP}, #{isdelet,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.UserServicet" >
+    insert into user_servicet
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="usename != null" >
+        UseName,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="svtid != null" >
+        SvtId,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="realname != null" >
+        RealName,
+      </if>
+      <if test="idcard != null" >
+        IdCard,
+      </if>
+      <if test="phonenum != null" >
+        PhoneNum,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="creattime != null" >
+        CreatTime,
+      </if>
+      <if test="isdelet != null" >
+        IsDelet,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="usename != null" >
+        #{usename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="svtid != null" >
+        #{svtid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelet != null" >
+        #{isdelet,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.UserServicet" >
+    update user_servicet
+    <set >
+      <if test="usename != null" >
+        UseName = #{usename,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="svtid != null" >
+        SvtId = #{svtid,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        RoleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="realname != null" >
+        RealName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        IdCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        PhoneNum = #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelet != null" >
+        IsDelet = #{isdelet,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.UserServicet" >
+    update user_servicet
+    set UseName = #{usename,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      SvtId = #{svtid,jdbcType=INTEGER},
+      RoleId = #{roleid,jdbcType=INTEGER},
+      RealName = #{realname,jdbcType=VARCHAR},
+      IdCard = #{idcard,jdbcType=VARCHAR},
+      PhoneNum = #{phonenum,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      CreatTime = #{creattime,jdbcType=TIMESTAMP},
+      IsDelet = #{isdelet,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

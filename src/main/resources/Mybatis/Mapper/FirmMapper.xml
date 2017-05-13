@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.zjnu.STService.Dao.FirmMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Firm" >
+    <constructor >
+      <idArg column="Id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="Name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PostId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="DocUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="OpenBank" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="Account" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="AccountNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="CityId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="CountyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Name, Address, PostId, DocUrl, OpenBank, Account, AccountNo, CityId, CountyId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from firm
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from firm
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Firm" >
+    insert into firm (Id, Name, Address, 
+      PostId, DocUrl, OpenBank, 
+      Account, AccountNo, CityId, 
+      CountyId)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{postid,jdbcType=VARCHAR}, #{docurl,jdbcType=VARCHAR}, #{openbank,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{accountno,jdbcType=VARCHAR}, #{cityid,jdbcType=INTEGER}, 
+      #{countyid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Firm" >
+    insert into firm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="postid != null" >
+        PostId,
+      </if>
+      <if test="docurl != null" >
+        DocUrl,
+      </if>
+      <if test="openbank != null" >
+        OpenBank,
+      </if>
+      <if test="account != null" >
+        Account,
+      </if>
+      <if test="accountno != null" >
+        AccountNo,
+      </if>
+      <if test="cityid != null" >
+        CityId,
+      </if>
+      <if test="countyid != null" >
+        CountyId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null" >
+        #{postid,jdbcType=VARCHAR},
+      </if>
+      <if test="docurl != null" >
+        #{docurl,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null" >
+        #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null" >
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="countyid != null" >
+        #{countyid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Firm" >
+    update firm
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null" >
+        PostId = #{postid,jdbcType=VARCHAR},
+      </if>
+      <if test="docurl != null" >
+        DocUrl = #{docurl,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null" >
+        OpenBank = #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        Account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null" >
+        AccountNo = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        CityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="countyid != null" >
+        CountyId = #{countyid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Firm" >
+    update firm
+    set Name = #{name,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      PostId = #{postid,jdbcType=VARCHAR},
+      DocUrl = #{docurl,jdbcType=VARCHAR},
+      OpenBank = #{openbank,jdbcType=VARCHAR},
+      Account = #{account,jdbcType=VARCHAR},
+      AccountNo = #{accountno,jdbcType=VARCHAR},
+      CityId = #{cityid,jdbcType=INTEGER},
+      CountyId = #{countyid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

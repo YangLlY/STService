@@ -3,15 +3,11 @@ package cn.edu.zjnu.STService.Dao;
 import cn.edu.zjnu.STService.Model.UserServicet;
 
 public interface UserServicetMapper {
-    int deleteByPrimaryKey(Integer id);
+    UserServicet findOneByName(String name);
 
-    int insert(UserServicet record);
+    int delById(Integer id);
 
-    int insertSelective(UserServicet record);
+    int add(UserServicet record);
 
-    UserServicet selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(UserServicet record);
-
-    int updateByPrimaryKey(UserServicet record);
+    int updateById(UserServicet record);
 }

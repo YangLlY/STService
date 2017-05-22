@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by yly on 2017/3/31.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/test/user")
 public class TestUserController {
     @Resource
     private ITestUserService testUserService;

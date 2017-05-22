@@ -1,33 +1,43 @@
 package cn.edu.zjnu.STService.Model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
+/*
+* 服务团队用户验证类
+*
+* */
 public class UserServicet {
     private Integer id;
-
-    private String usename;
-
+    @NotBlank(message = "用户名不能为空")
+    private String username;
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     private Integer svtid;
 
     private Integer roleid;
-
+    @NotBlank(message = "姓名不能为空")
     private String realname;
-
+    @NotBlank(message = "身份证号码不能为空")
+    @Pattern(regexp = "^(\\d{15}|\\d{18})$",message = "身份证号码为15位或者18位")
     private String idcard;
-
+    @NotBlank(message = "手机号码不能为空")
+    @Length(min=11,max = 11,message = "手机号码为11位")
     private String phonenum;
-
+    @NotBlank(message = "QQ号码不能为空")
     private String qq;
 
     private Date creattime;
 
     private Integer isdelet;
 
-    public UserServicet(Integer id, String usename, String password, Integer svtid, Integer roleid, String realname, String idcard, String phonenum, String qq, Date creattime, Integer isdelet) {
+    public UserServicet(Integer id, String username, String password, Integer svtid, Integer roleid, String realname, String idcard, String phonenum, String qq, Date creattime, Integer isdelet) {
         this.id = id;
-        this.usename = usename;
+        this.username = username;
         this.password = password;
         this.svtid = svtid;
         this.roleid = roleid;
@@ -51,12 +61,12 @@ public class UserServicet {
         this.id = id;
     }
 
-    public String getUsename() {
-        return usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename == null ? null : usename.trim();
+    public void setUsername(String usename) {
+        this.username = usename == null ? null : usename.trim();
     }
 
     public String getPassword() {

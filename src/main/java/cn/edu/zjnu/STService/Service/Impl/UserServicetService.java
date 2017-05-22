@@ -15,27 +15,19 @@ public class UserServicetService implements IUserServicetService {
     @Resource
     private UserServicetMapper userServicetMapper;
 
-    public int deleteByUserId(Integer id) {
-        return userServicetMapper.deleteByPrimaryKey(id);
+    public UserServicet findOneByName(String name) {
+        return userServicetMapper.findOneByName(name);
     }
 
-    public int insert(UserServicet record) {
-        return userServicetMapper.insert(record);
+    public int delById(Integer id) {
+        return userServicetMapper.delById(id);
     }
 
-    public int insertSelective(UserServicet record) {
-        return userServicetMapper.insertSelective(record);
+    public int add(UserServicet record) {
+        return userServicetMapper.add(record);
     }
 
-    public UserServicet selectByUserId(Integer id) {
-        return userServicetMapper.selectByPrimaryKey(id);
-    }
-
-    public int updateByUserIdSelective(UserServicet record) {
-        return userServicetMapper.updateByPrimaryKeySelective(record);
-    }
-
-    public int updateByUserId(UserServicet record) {
-        return userServicetMapper.updateByPrimaryKey(record);
+    public int updateById(UserServicet record) {
+        return userServicetMapper.updateById(record);
     }
 }

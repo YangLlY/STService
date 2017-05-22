@@ -6,15 +6,11 @@ import cn.edu.zjnu.STService.Model.UserServicet;
  * Created by yly on 2017/5/13.
  */
 public interface IUserServicetService {
-    int deleteByUserId(Integer id);
+    UserServicet findOneByName(String name);
 
-    int insert(UserServicet record);
+    int delById(Integer id);
 
-    int insertSelective(UserServicet record);
+    int add(UserServicet record);
 
-    UserServicet selectByUserId(Integer id);
-
-    int updateByUserIdSelective(UserServicet record);
-
-    int updateByUserId(UserServicet record);
+    int updateById(UserServicet record);
 }

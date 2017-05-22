@@ -3,15 +3,11 @@ package cn.edu.zjnu.STService.Dao;
 import cn.edu.zjnu.STService.Model.UserFirm;
 
 public interface UserFirmMapper {
-    int deleteByPrimaryKey(Integer id);
+    UserFirm findOneByUserName(String userName);
 
-    int insert(UserFirm record);
+    int add(UserFirm record);
 
-    int insertSelective(UserFirm record);
+    int delById(Integer id);
 
-    UserFirm selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(UserFirm record);
-
-    int updateByPrimaryKey(UserFirm record);
+    int updateById(UserFirm record);
 }

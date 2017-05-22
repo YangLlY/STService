@@ -6,15 +6,11 @@ import cn.edu.zjnu.STService.Model.UserBg;
  * Created by yly on 2017/5/12.
  */
 public interface IUserBgService {
-    int deleteByUserId(Integer id);
+    UserBg findOneByName(String name);
 
-    int insert(UserBg record);
+    int add(UserBg record);
 
-    int insertSelective(UserBg record);
+    int delById(Integer id);
 
-    UserBg selectByUserId(Integer id);
-
-    int updateByUserIdSelective(UserBg record);
-
-    int updateByUserId(UserBg record);
+    int updateById(UserBg record);
 }

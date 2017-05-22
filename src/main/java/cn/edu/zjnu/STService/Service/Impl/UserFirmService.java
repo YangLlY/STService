@@ -15,27 +15,19 @@ public class UserFirmService implements IUserFirmService{
     @Resource
     private UserFirmMapper userFirmMapper;
 
-    public int deleteByUserId(Integer id) {
-        return userFirmMapper.deleteByPrimaryKey(id);
+    public UserFirm findOneByUserName(String userName) {
+        return userFirmMapper.findOneByUserName(userName);
     }
 
-    public int insert(UserFirm record) {
-        return userFirmMapper.insert(record);
+    public int add(UserFirm record) {
+        return userFirmMapper.add(record);
     }
 
-    public int insertSelective(UserFirm record) {
-        return userFirmMapper.insertSelective(record);
+    public int delById(Integer id) {
+        return userFirmMapper.delById(id);
     }
 
-    public UserFirm selectByUseId(Integer id) {
-        return userFirmMapper.selectByPrimaryKey(id);
-    }
-
-    public int updateByUserIdSelective(UserFirm record) {
-        return userFirmMapper.updateByPrimaryKeySelective(record);
-    }
-
-    public int updateByUserId(UserFirm record) {
-        return userFirmMapper.updateByPrimaryKey(record);
+    public int updateById(UserFirm record) {
+        return userFirmMapper.updateById(record);
     }
 }

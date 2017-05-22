@@ -3,15 +3,11 @@ package cn.edu.zjnu.STService.Dao;
 import cn.edu.zjnu.STService.Model.UserBg;
 
 public interface UserBgMapper {
-    int deleteByPrimaryKey(Integer id);
+    UserBg findOneByName(String name);
 
-    int insert(UserBg record);
+    int add(UserBg record);
 
-    int insertSelective(UserBg record);
+    int delById(Integer id);
 
-    UserBg selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(UserBg record);
-
-    int updateByPrimaryKey(UserBg record);
+    int updateById(UserBg record);
 }

@@ -15,27 +15,19 @@ public class UserBgService implements IUserBgService {
     @Resource
     private UserBgMapper userBgMapper;
 
-    public int deleteByUserId(Integer id) {
-        return userBgMapper.deleteByPrimaryKey(id);
+    public UserBg findOneByName(String name) {
+        return userBgMapper.findOneByName(name);
     }
 
-    public int insert(UserBg record) {
-        return userBgMapper.insert(record);
+    public int add(UserBg record) {
+        return userBgMapper.add(record);
     }
 
-    public int insertSelective(UserBg record) {
-        return userBgMapper.insertSelective(record);
+    public int delById(Integer id) {
+        return userBgMapper.delById(id);
     }
 
-    public UserBg selectByUserId(Integer id) {
-        return userBgMapper.selectByPrimaryKey(id);
-    }
-
-    public int updateByUserIdSelective(UserBg record) {
-        return userBgMapper.updateByPrimaryKeySelective(record);
-    }
-
-    public int updateByUserId(UserBg record) {
-        return userBgMapper.updateByPrimaryKey(record);
+    public int updateById(UserBg record) {
+        return userBgMapper.updateById(record);
     }
 }

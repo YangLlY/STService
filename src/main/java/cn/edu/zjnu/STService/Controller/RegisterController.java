@@ -74,6 +74,8 @@ public class RegisterController extends BaseController{
                 }else{
                     //userFirm数据格式正确后，判断此用户名是否已存在
                     if(userFirmService.findOneByUserName(userFirm.getUsername()) == null) {
+                        //添加firm对象中的加入时间
+                        firm.setJointime(new Date());
                         //数据库添加公司
                         firmService.add(firm);
                         //添加公司成功后，再添加企业管理用户

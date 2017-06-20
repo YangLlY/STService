@@ -5,15 +5,16 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class Firm {
     private Integer id;
-    @NotBlank(message="公司名称不能为空")
+    @NotBlank(message = "公司名称不能为空")
     private String name;
     @NotBlank(message = "公司地址不能为空")
     private String address;
     @NotBlank(message = "邮政编码不能为空")
-    @Length(min = 6,max = 6,message = "邮政编码为6位数")
+    @Length(min = 6, max = 6, message = "邮政编码为6位数")
     private String postid;
 
     private String docurl;
@@ -29,7 +30,10 @@ public class Firm {
     @NotNull(message = "公司所在区（县）不能为空")
     private Integer countyid;
 
-    public Firm(Integer id, String name, String address, String postid, String docurl, String openbank, String account, String accountno, Integer cityid, Integer countyid) {
+    private Date jointime;
+
+
+    public Firm(Integer id, String name, String address, String postid, String docurl, String openbank, String account, String accountno, Integer cityid, Integer countyid,Date jointime) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -40,6 +44,7 @@ public class Firm {
         this.accountno = accountno;
         this.cityid = cityid;
         this.countyid = countyid;
+        this.jointime = jointime;
     }
 
     public Firm() {
@@ -125,4 +130,13 @@ public class Firm {
     public void setCountyid(Integer countyid) {
         this.countyid = countyid;
     }
+
+    public Date getJointime() {
+        return jointime;
+    }
+
+    public void setJointime(Date jointime) {
+        this.jointime = jointime;
+    }
+
 }

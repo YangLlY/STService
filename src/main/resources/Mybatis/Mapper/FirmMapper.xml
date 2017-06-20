@@ -13,10 +13,11 @@
       <arg column="AccountNo" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="CityId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="CountyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="JoinTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Name, Address, PostId, DocUrl, OpenBank, Account, AccountNo, CityId, CountyId
+    Id, Name, Address, PostId, DocUrl, OpenBank, Account, AccountNo, CityId, CountyId,JoinTime
   </sql>
 
   <!--1、查找公司，查找公司是否已存在-->
@@ -32,11 +33,11 @@
     insert into firm (Id, Name, Address, 
       PostId, DocUrl, OpenBank, 
       Account, AccountNo, CityId, 
-      CountyId)
+      CountyId,JoinTime)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{postid,jdbcType=VARCHAR}, #{docurl,jdbcType=VARCHAR}, #{openbank,jdbcType=VARCHAR}, 
       #{account,jdbcType=VARCHAR}, #{accountno,jdbcType=VARCHAR}, #{cityid,jdbcType=INTEGER}, 
-      #{countyid,jdbcType=INTEGER})
+      #{countyid,jdbcType=INTEGER},#{jointime,jdbcType=TIMESTAMP})
   </insert>
 
   <!--3、删除公司-->
@@ -56,7 +57,14 @@
       Account = #{account,jdbcType=VARCHAR},
       AccountNo = #{accountno,jdbcType=VARCHAR},
       CityId = #{cityid,jdbcType=INTEGER},
-      CountyId = #{countyid,jdbcType=INTEGER}
+      CountyId = #{countyid,jdbcType=INTEGER},
+      JoinTime = #{jointime,jdbcType=TIMESTAMP}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findAllFirm" resultMap="BaseResultMap" parameterType="cn.edu.zjnu.STService.Model.Firm">
+    SELECT
+    <include refid="Base_Column_List" />
+     FROM firm
+  </select>
 </mapper>

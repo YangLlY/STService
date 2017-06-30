@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50716
 File Encoding         : 65001
 
-Date: 2017-05-22 18:54:47
+Date: 2017-06-30 20:04:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3650,29 +3650,43 @@ CREATE TABLE `firm` (
   `AccountNo` varchar(20) DEFAULT NULL COMMENT '公司银行账号',
   `CityId` int(11) NOT NULL COMMENT '公司所在城市ID',
   `CountyId` int(11) NOT NULL COMMENT '公司所在区ID',
+  `JoinTime` datetime NOT NULL COMMENT '企业入驻平台时间',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='企业信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='企业信息表';
 
 -- ----------------------------
 -- Records of firm
 -- ----------------------------
-INSERT INTO `firm` VALUES ('3', '国家工商行政管理总局', '北京市西城区三里河东路八号', '100820', '', '', '', '', '11111', '11111');
-INSERT INTO `firm` VALUES ('5', '浙江师范大学', '浙江省金华市迎宾大道688号', '321004', '', '', '', '', '2222', '2222');
+INSERT INTO `firm` VALUES ('3', '国家工商行政管理总局', '北京市西城区三里河东路八号', '100820', '', '', '', '', '11111', '11111', '2017-05-14 19:09:04');
+INSERT INTO `firm` VALUES ('5', '浙江师范大学', '浙江省金华市迎宾大道688号', '321004', '', '', '', '', '2222', '2222', '2017-05-15 09:48:27');
+INSERT INTO `firm` VALUES ('6', '中国石油化工股份有限公司', '北京市朝阳区朝阳门北大街22号', '100728', '', '', '', '', '3333', '3333', '2017-06-20 16:51:04');
+INSERT INTO `firm` VALUES ('8', '中国建筑股份有限公司', '北京市海淀区三里河路15号', '100037', '', '', '', '', '4444', '4444', '2017-06-30 16:41:55');
 
 -- ----------------------------
 -- Table structure for materialdir
 -- ----------------------------
 DROP TABLE IF EXISTS `materialdir`;
 CREATE TABLE `materialdir` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `MaterialDirId` int(11) NOT NULL COMMENT '材料目录ID',
-  `FirstUrl` varchar(200) DEFAULT NULL,
-  `SecondUrl` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`MaterialDirId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='材料目录表';
+  `MaterialName` varchar(200) NOT NULL COMMENT '材料名称',
+  `MaterialUrl` varchar(200) NOT NULL COMMENT '材料地址',
+  `UploadTime` varchar(200) NOT NULL COMMENT '文件上传时间',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='材料目录表';
 
 -- ----------------------------
 -- Records of materialdir
 -- ----------------------------
+INSERT INTO `materialdir` VALUES ('7', '31', 'github_0.docx', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:29:04');
+INSERT INTO `materialdir` VALUES ('8', '31', 'github_0.docx', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:29:13');
+INSERT INTO `materialdir` VALUES ('9', '31', '2017-2018学年校历_0.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:29:54');
+INSERT INTO `materialdir` VALUES ('10', '31', '2017-2018学年校历_3.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:29:03');
+INSERT INTO `materialdir` VALUES ('11', '31', '2017-2018学年校历_4.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:29:40');
+INSERT INTO `materialdir` VALUES ('12', '31', '2017-2018学年校历_5.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 15:35:14');
+INSERT INTO `materialdir` VALUES ('13', '31', '2017-2018学年校历_6.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 16:07:53');
+INSERT INTO `materialdir` VALUES ('14', '31', '2017-2018学年校历_7.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市高新项目', '2017-06-29 16:12:53');
+INSERT INTO `materialdir` VALUES ('15', '32', '2017-2018学年校历_0.doc', 'D:\\IDEA CODE\\STService\\target\\STService\\upload\\国家工商行政管理总局\\金华市科技计划项目申报', '2017-06-29 16:13:44');
 
 -- ----------------------------
 -- Table structure for order
@@ -3738,7 +3752,7 @@ CREATE TABLE `project` (
   `ContId` int(11) NOT NULL COMMENT '合同ID',
   `FirmId` int(11) NOT NULL COMMENT '企业ID',
   `OrderId` int(11) DEFAULT NULL COMMENT '订单ID',
-  `MaterialDirId` int(11) NOT NULL COMMENT '材料目录ID',
+  `MaterialDirId` int(50) NOT NULL COMMENT '材料目录ID',
   `CreatTime` datetime NOT NULL COMMENT '创建项目时间',
   `ProStatus` varchar(50) NOT NULL COMMENT '项目状态',
   PRIMARY KEY (`ProId`)
@@ -3747,6 +3761,8 @@ CREATE TABLE `project` (
 -- ----------------------------
 -- Records of project
 -- ----------------------------
+INSERT INTO `project` VALUES ('1', '金华市高新项目', '1', '3', '1', '31', '2017-06-26 14:49:05', '已发布订单');
+INSERT INTO `project` VALUES ('2', '金华市科技计划项目申报', '3', '3', null, '32', '2017-06-27 13:10:30', '培育中');
 
 -- ----------------------------
 -- Table structure for role
@@ -3804,12 +3820,13 @@ CREATE TABLE `serviceteam` (
   `CityId` int(11) NOT NULL COMMENT '团队所在城市ID',
   `CountyId` int(11) NOT NULL COMMENT '团队所在区ID',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='服务团队信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='服务团队信息表';
 
 -- ----------------------------
 -- Records of serviceteam
 -- ----------------------------
-INSERT INTO `serviceteam` VALUES ('1', '浙江师范大学', '浙江省金华市迎宾大道688号', '321004', '', '', '', '2222', '2222');
+INSERT INTO `serviceteam` VALUES ('1', '浙江师范大学', '浙江省金华市迎宾大道688号', '主要负责专利', '', '', '', '2222', '2222');
+INSERT INTO `serviceteam` VALUES ('2', '中国石油化工股份有限公司', '北京市朝阳区朝阳门北大街22号', '主要负责高新项目', '', '', '', '3333', '3333');
 
 -- ----------------------------
 -- Table structure for user_bg
@@ -3851,13 +3868,15 @@ CREATE TABLE `user_firm` (
   `CreatTime` datetime NOT NULL COMMENT '创建账号时间',
   `IsDelet` int(1) NOT NULL COMMENT '是否删除（0：否；1：是）软删除',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='企业用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='企业用户表';
 
 -- ----------------------------
 -- Records of user_firm
 -- ----------------------------
 INSERT INTO `user_firm` VALUES ('1', 'yang', '123', '3', '10', '杨丽燕', '123456789123456789', '18329021471', '987654321', '2017-05-14 19:09:04', '0');
 INSERT INTO `user_firm` VALUES ('3', 'yna', '123', '5', '10', '李晓明', '123456789123456', '18329021111', '987654320', '2017-05-15 09:48:27', '0');
+INSERT INTO `user_firm` VALUES ('4', 'wang', '123', '6', '10', '王玉普', '123456789123457', '18329021116', '987654329', '2017-06-20 16:51:04', '0');
+INSERT INTO `user_firm` VALUES ('5', 'guan', '123', '8', '10', '官庆', '123456789123457', '18329021116', '987654329', '2017-06-30 16:41:55', '0');
 
 -- ----------------------------
 -- Table structure for user_log
@@ -3895,9 +3914,10 @@ CREATE TABLE `user_servicet` (
   `CreatTime` datetime NOT NULL COMMENT '创建账号时间',
   `IsDelet` int(1) NOT NULL COMMENT '是否删除（0：否；1：是）软删除',
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='服务团队用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='服务团队用户表';
 
 -- ----------------------------
 -- Records of user_servicet
 -- ----------------------------
-INSERT INTO `user_servicet` VALUES ('1', 'yna', '123', '1', '10', '李晓明', '123456789123456', '18329021111', '987654320', '2017-05-15 10:51:40', '0');
+INSERT INTO `user_servicet` VALUES ('1', 'yna', '123', '1', '20', '李晓明', '123456789123456', '18329021111', '987654320', '2017-05-15 10:51:40', '0');
+INSERT INTO `user_servicet` VALUES ('2', 'wang', '123', '2', '20', '王玉普', '123456789123456', '18329021111', '987654320', '2017-06-30 19:53:34', '0');

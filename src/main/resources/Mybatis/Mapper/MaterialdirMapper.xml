@@ -1,73 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.edu.zjnu.STService.Dao.MaterialdirMapper" >
-  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Materialdir" >
-    <constructor >
-      <idArg column="MaterialDirId" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="FirstUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="SecondUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjnu.STService.Dao.MaterialdirMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.zjnu.STService.Model.Materialdir">
+    <constructor>
+      <idArg column="MaterialDirId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="MaterialName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="MaterialUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="UploadTime" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List" >
-    MaterialDirId, FirstUrl, SecondUrl
+  <sql id="Base_Column_List">
+    MaterialDirId, MaterialName, MaterialUrl, UploadTime
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+
+  <select id="findOneById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from materialdir
     where MaterialDirId = #{materialdirid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+
+  <delete id="delById" parameterType="java.lang.Integer">
     delete from materialdir
     where MaterialDirId = #{materialdirid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.edu.zjnu.STService.Model.Materialdir" >
-    insert into materialdir (MaterialDirId, FirstUrl, SecondUrl
-      )
-    values (#{materialdirid,jdbcType=INTEGER}, #{firsturl,jdbcType=VARCHAR}, #{secondurl,jdbcType=VARCHAR}
-      )
+
+  <insert id="add" parameterType="cn.edu.zjnu.STService.Model.Materialdir">
+    insert into materialdir (MaterialDirId, MaterialName, MaterialUrl, 
+      UploadTime)
+    values (#{materialdirid,jdbcType=INTEGER}, #{materialname,jdbcType=VARCHAR}, #{materialurl,jdbcType=VARCHAR}, 
+      #{uploadtime,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.edu.zjnu.STService.Model.Materialdir" >
-    insert into materialdir
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="materialdirid != null" >
-        MaterialDirId,
-      </if>
-      <if test="firsturl != null" >
-        FirstUrl,
-      </if>
-      <if test="secondurl != null" >
-        SecondUrl,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="materialdirid != null" >
-        #{materialdirid,jdbcType=INTEGER},
-      </if>
-      <if test="firsturl != null" >
-        #{firsturl,jdbcType=VARCHAR},
-      </if>
-      <if test="secondurl != null" >
-        #{secondurl,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.zjnu.STService.Model.Materialdir" >
+
+  <update id="updateById" parameterType="cn.edu.zjnu.STService.Model.Materialdir">
     update materialdir
-    <set >
-      <if test="firsturl != null" >
-        FirstUrl = #{firsturl,jdbcType=VARCHAR},
-      </if>
-      <if test="secondurl != null" >
-        SecondUrl = #{secondurl,jdbcType=VARCHAR},
-      </if>
-    </set>
+    set MaterialName = #{materialname,jdbcType=VARCHAR},
+      MaterialUrl = #{materialurl,jdbcType=VARCHAR},
+      UploadTime = #{uploadtime,jdbcType=VARCHAR}
     where MaterialDirId = #{materialdirid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.edu.zjnu.STService.Model.Materialdir" >
-    update materialdir
-    set FirstUrl = #{firsturl,jdbcType=VARCHAR},
-      SecondUrl = #{secondurl,jdbcType=VARCHAR}
-    where MaterialDirId = #{materialdirid,jdbcType=INTEGER}
-  </update>
+
+  <!--统计同份文件，已上传次数，模糊查询“材料名_*”-->
+  <select id="count"  resultType="integer">
+    SELECT COUNT(1)
+    FROM materialdir
+    WHERE MaterialDirId = #{materialdirid,jdbcType=INTEGER} and  MaterialName LIKE CONCAT(#{materialname,jdbcType=VARCHAR},"%")
+  </select>
+
+  <!--通过文件名和材料目录ID，找到某个材料对象-->
+  <select id="findOneBydirIdAndName" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM  materialdir
+    WHERE MaterialDirId = #{materialdirid,jdbcType=INTEGER} and MaterialName = #{materialname,jdbcType=VARCHAR}
+  </select>
 </mapper>

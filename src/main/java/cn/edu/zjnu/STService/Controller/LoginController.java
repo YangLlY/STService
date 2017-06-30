@@ -3,9 +3,9 @@ package cn.edu.zjnu.STService.Controller;
 import cn.edu.zjnu.STService.Model.UserBg;
 import cn.edu.zjnu.STService.Model.UserFirm;
 import cn.edu.zjnu.STService.Model.UserServicet;
-import cn.edu.zjnu.STService.Service.Impl.UserBgService;
-import cn.edu.zjnu.STService.Service.Impl.UserFirmService;
-import cn.edu.zjnu.STService.Service.Impl.UserServicetService;
+import cn.edu.zjnu.STService.Service.IUserBgService;
+import cn.edu.zjnu.STService.Service.IUserFirmService;
+import cn.edu.zjnu.STService.Service.IUserServicetService;
 import cn.edu.zjnu.STService.Utils.GsonUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +25,11 @@ import java.util.Map;
 @RequestMapping(value = "/user")
 public class LoginController extends BaseController{
     @Resource
-    private UserBgService userBgService;
+    private IUserBgService userBgService;
     @Resource
-    private UserFirmService userFirmService;
+    private IUserFirmService userFirmService;
     @Resource
-    private UserServicetService userServicetService;
+    private IUserServicetService userServicetService;
 
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session){

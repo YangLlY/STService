@@ -20,13 +20,15 @@
     Id, Name, Address, PostId, DocUrl, OpenBank, Account, AccountNo, CityId, CountyId,JoinTime
   </sql>
 
-  <!--1、查找公司，查找公司是否已存在-->
+  <!--1、通过查找公司名称，找个某个公司信息-->
   <select id="findOneByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from firm
     where Name =  #{name,jdbcType=VARCHAR}
   </select>
+
+
 
   <!--2、增加新公司-->
   <insert id="add" parameterType="cn.edu.zjnu.STService.Model.Firm" >
@@ -61,10 +63,18 @@
       JoinTime = #{jointime,jdbcType=TIMESTAMP}
     where Id = #{id,jdbcType=INTEGER}
   </update>
-  
+ <!--5、获取所有企业信息，用于分页-->
   <select id="findAllFirm" resultMap="BaseResultMap" parameterType="cn.edu.zjnu.STService.Model.Firm">
     SELECT
     <include refid="Base_Column_List" />
      FROM firm
   </select>
+  <!--6、通过公司id，查找某个公司信息-->
+  <select id="findOneById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from firm
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+
 </mapper>

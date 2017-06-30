@@ -19,10 +19,6 @@ public class ServiceteamService implements IServiceteamService {
         return serviceteamMapper.findOneByName(name);
     }
 
-    public int add(Serviceteam record) {
-        return serviceteamMapper.add(record);
-    }
-
     public int delById(Integer id) {
         return serviceteamMapper.delById(id);
     }

@@ -58,7 +58,7 @@
         </javaClientGenerator>
         <!-- 要对那些数据表进行生成操作，必须要有一个. -->
         <!--用百分号表示生成所有表,可以直接省去一个一个写 <table tableName="%" /> -->
-        <table tableName="%"
+        <table tableName="materialdir"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

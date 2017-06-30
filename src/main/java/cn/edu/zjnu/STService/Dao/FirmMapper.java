@@ -14,4 +14,9 @@ public interface FirmMapper {
     int updateById(Firm record);
 
     List<Firm> findAllFirm(Firm firm);
+
+    Firm findOneById(Integer id);
+
+
+
 }

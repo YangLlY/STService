@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -40,12 +37,16 @@ public class RegisterController extends BaseController{
     @Resource
     private IServiceteamService serviceteamService;
 
-    /*
-    * 企业注册
-    *
-    * */
+    /**
+     * 企业注册（企业管理用户+企业）
+     * @param response
+     * @param userFirm
+     * @param ufErrors
+     * @param firm
+     * @param fErrors
+     */
     @RequestMapping(value = "/firm_reg.do",method = RequestMethod.POST )
-    public void fregister(HttpServletRequest request, HttpServletResponse response, @Valid UserFirm userFirm,BindingResult ufErrors, @Valid Firm firm, BindingResult fErrors, HttpSession session){
+    public void fregister( HttpServletResponse response, @Valid UserFirm userFirm,BindingResult ufErrors, @Valid Firm firm, BindingResult fErrors){
         Map<String,String> fError = new LinkedHashMap<String, String>();
         Map<String,String> ufError = new LinkedHashMap<String, String>();
         //判断注册firm信息数据格式是否正确
@@ -74,18 +75,8 @@ public class RegisterController extends BaseController{
                 }else{
                     //userFirm数据格式正确后，判断此用户名是否已存在
                     if(userFirmService.findOneByUserName(userFirm.getUsername()) == null) {
-                        //添加firm对象中的加入时间
-                        firm.setJointime(new Date());
-                        //数据库添加公司
-                        firmService.add(firm);
-                        //添加公司成功后，再添加企业管理用户
-                        //添加userFirm对象中的企业Id、角色Id、创建时间、未删除标识
-                        userFirm.setFirmid(firmService.findOneByName(firm.getName()).getId());
-                        userFirm.setRoleid(10);
-                        userFirm.setCreattime(new Date());
-                        userFirm.setIsdelet(0);
-                        //数据库添加用户
-                        userFirmService.add(userFirm);
+                        //添加firm，userfirm数据到数据表
+                        userFirmService.addFirmAdmin(userFirm,firm);
                         this.write(response, true);
                     }else{
                         ufError.put("usernameError","用户名已存在");
@@ -104,24 +95,29 @@ public class RegisterController extends BaseController{
         }
 
     }
-    /*
-    * 服务团队注册
-    *
-    * */
+
+    /**
+     * 服务团队注册（服务团队管理用户+服务团队）
+     * @param userServicet
+     * @param usErrors
+     * @param serviceTeam
+     * @param stErrors
+     * @param response
+     */
     @RequestMapping(value = "/st_reg.do",method = RequestMethod.POST )
-    public void stregister(HttpServletRequest request, @Valid UserServicet userServicet, BindingResult usErrors, @Valid Serviceteam serviceTeam, BindingResult stErrors, HttpServletResponse response, HttpSession session){
+    public void stregister(HttpServletResponse response ,@Valid UserServicet userServicet, BindingResult usErrors, @Valid Serviceteam serviceTeam, BindingResult stErrors){
         Map<String,String> usError = new LinkedHashMap<String, String>();
         Map<String,String> stError = new LinkedHashMap<String, String>();
         //判断注册serviceTeam信息数据格式是否正确
-        if(usErrors.hasErrors()){
+        if(stErrors.hasErrors()){
             //将BindingResult中serviceTeam错误格式信息返回给页面
-            for (FieldError error : usErrors.getFieldErrors()){
+            for (FieldError error : stErrors.getFieldErrors()){
                 //遍历BindingResult的错误，放入usError对象中
-                usError.put(error.getField()+"Error",error.getDefaultMessage());
+                stError.put(error.getField()+"Error",error.getDefaultMessage());
             }
             //usError对象转成json格式
-            String usresult = new GsonUtils().toJson(usError);
-            this.write(response, usresult);
+            String stresult = new GsonUtils().toJson(usError);
+            this.write(response, stresult);
         }else{
             //serviceTeam数据格式正确后，判断此服务团队是否已存在
             if(serviceteamService.findOneByName(serviceTeam.getName()) == null) {
@@ -138,16 +134,8 @@ public class RegisterController extends BaseController{
                 }else{
                     //userServicet数据格式正确后，判断此服务团队管理用户名是否已存在
                     if(userServicetService.findOneByName(userServicet.getUsername()) == null) {
-                        //数据库添加服务团队
-                        serviceteamService.add(serviceTeam);
-                        //添加服务团队成功后，再添加服务团队管理用户
-                        //添加userServicet对象中的服务团队Id、角色Id、创建时间、未删除标识
-                        userServicet.setSvtid(serviceteamService.findOneByName(serviceTeam.getName()).getId());
-                        userServicet.setRoleid(10);
-                        userServicet.setCreattime(new Date());
-                        userServicet.setIsdelet(0);
-                        //数据库添加用户
-                        userServicetService.add(userServicet);
+                        //添加serviceTeam，userServicet数据到数据表
+                        userServicetService.addServicetAdmin(userServicet,serviceTeam);
                         this.write(response, true);
                     }else{
                         usError.put("usernameError","用户名已存在");

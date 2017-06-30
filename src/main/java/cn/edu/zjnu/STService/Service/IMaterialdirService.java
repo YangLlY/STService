@@ -1,11 +1,15 @@
-package cn.edu.zjnu.STService.Dao;
+package cn.edu.zjnu.STService.Service;
 
 import cn.edu.zjnu.STService.Model.Materialdir;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-public interface MaterialdirMapper {
+/**
+ * Created by yly on 2017/6/26.
+ */
+public interface IMaterialdirService {
     int delById(Integer materialdirid);
 
     int add(Materialdir record);
@@ -17,4 +21,5 @@ public interface MaterialdirMapper {
     int count(@Param("materialname")String materialname,@Param("materialdirid")Integer materialdirid);
 
     Materialdir findOneBydirIdAndName(@Param("materialname")String materialname,@Param("materialdirid")Integer materialdirid);
+
 }

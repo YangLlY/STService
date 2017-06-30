@@ -22,9 +22,10 @@ public class TestController extends BaseController{
 
     @RequestMapping(value = "/page_dg.do",method = RequestMethod.POST)
     public void PageInfo(Firm firm, @RequestParam(value = "offset",defaultValue = "0")Integer pageNum,
-                         @RequestParam(value = "limit",defaultValue = "1")Integer pageSize, HttpServletResponse response) {
+                         @RequestParam(value = "limit",defaultValue = "2")Integer pageSize, HttpServletResponse response) {
         /*offset:页码；limit：每页显示的条数*/
         Datagrid datagrid = firmService.findAllFirm(firm,pageNum,pageSize);
+        System.out.println("================datagrid============="+new GsonUtils().toJson(datagrid));
         this.write(response,new GsonUtils().toJson(datagrid));
     }
 

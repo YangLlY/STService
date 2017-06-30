@@ -3,14 +3,17 @@ package cn.edu.zjnu.STService.Model;
 public class Materialdir {
     private Integer materialdirid;
 
-    private String firsturl;
+    private String materialname;
 
-    private String secondurl;
+    private String materialurl;
 
-    public Materialdir(Integer materialdirid, String firsturl, String secondurl) {
+    private String uploadtime;
+
+    public Materialdir(Integer materialdirid, String materialname, String materialurl, String uploadtime) {
         this.materialdirid = materialdirid;
-        this.firsturl = firsturl;
-        this.secondurl = secondurl;
+        this.materialname = materialname;
+        this.materialurl = materialurl;
+        this.uploadtime = uploadtime;
     }
 
     public Materialdir() {
@@ -25,19 +28,27 @@ public class Materialdir {
         this.materialdirid = materialdirid;
     }
 
-    public String getFirsturl() {
-        return firsturl;
+    public String getMaterialname() {
+        return materialname;
     }
 
-    public void setFirsturl(String firsturl) {
-        this.firsturl = firsturl == null ? null : firsturl.trim();
+    public void setMaterialname(String materialname) {
+        this.materialname = materialname == null ? null : materialname.trim();
     }
 
-    public String getSecondurl() {
-        return secondurl;
+    public String getMaterialurl() {
+        return materialurl;
     }
 
-    public void setSecondurl(String secondurl) {
-        this.secondurl = secondurl == null ? null : secondurl.trim();
+    public void setMaterialurl(String materialurl) {
+        this.materialurl = materialurl == null ? null : materialurl.trim();
+    }
+
+    public String getUploadtime() {
+        return uploadtime;
+    }
+
+    public void setUploadtime(String uploadtime) {
+        this.uploadtime = uploadtime == null ? null : uploadtime.trim();
     }
 }

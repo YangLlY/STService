@@ -26,10 +26,6 @@ public class FirmService implements IFirmService {
         return firmMapper.findOneByName(name);
     }
 
-    public int add(Firm record) {
-        return firmMapper.add(record);
-    }
-
     public int delById(Integer id) {
         return firmMapper.delById(id);
     }
@@ -37,15 +33,19 @@ public class FirmService implements IFirmService {
     public int updateById(Firm record) {
         return firmMapper.updateById(record);
     }
-    /*测试bootstrap分页*/
+
+    /*测试分页*/
     public Datagrid findAllFirm(Firm firm, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
         PageHelper.orderBy("id asc");
         List<Firm> firmList = firmMapper.findAllFirm(firm);
         PageInfo<Firm> pageInfo = new PageInfo<Firm>(firmList);
-        Datagrid datagrid = new Datagrid(pageInfo.getTotal(),pageInfo.getList());
+        Datagrid datagrid = new Datagrid(pageInfo.getTotal(), pageInfo.getList());
         return datagrid;
     }
 
+    public Firm findOneById(Integer id) {
+        return firmMapper.findOneById(id);
+    }
 
 }

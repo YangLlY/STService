@@ -31,6 +31,7 @@ public class LoginController extends BaseController{
     @Resource
     private IUserServicetService userServicetService;
 
+
     @RequestMapping(value = "/login.do",method = RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session){
         String userName = request.getParameter("username");

@@ -6,11 +6,7 @@ import cn.edu.zjnu.STService.Model.Project;
 import cn.edu.zjnu.STService.Service.IFirmService;
 import cn.edu.zjnu.STService.Service.IMaterialdirService;
 import cn.edu.zjnu.STService.Service.IProjectService;
-import cn.edu.zjnu.STService.Utils.DateUtil;
-import org.apache.commons.io.FileUtils;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import cn.edu.zjnu.STService.Utils.FileOperateUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLEncoder;
 
 /**
  * Created by yly on 2017/6/22.
@@ -53,7 +47,11 @@ public class FileController extends BaseController{
         //获得该企业信息
         Firm firm = firmService.findOneById(firmid);
         String firmName = firm.getName();
-        //获得原始文件名
+        //===================================================================================
+        FileOperateUtil fileOperateUtil = new FileOperateUtil();
+        //fileOperateUtil.UpLoad(request,firmName,projectName,file,count);
+        //===================================================================================
+        /*//获得原始文件名
         String fileName = file.getOriginalFilename();
         System.out.println("========上传文件原名："+fileName);
 
@@ -76,7 +74,7 @@ public class FileController extends BaseController{
         ServletContext servletContext = request.getSession().getServletContext();
 
         //上传的位置,设定文件保存的目录
-        /*测试文件位置：STService/target/STService/upload/*/
+        *//*测试文件位置：STService/target/STService/upload*//*//*
         String path = servletContext.getRealPath("/upload/"+firmName+"/"+projectName);
         //创建文件目录
         File f = new File(path);
@@ -98,7 +96,7 @@ public class FileController extends BaseController{
                 materialdir.setMaterialdirid(materialdirid);
                 materialdir.setMaterialname(fName);
                 materialdir.setMaterialurl(path);
-                materialdir.setUploadtime(new DateUtil().DateFormater());
+                materialdir.setUploadtime(new DateUtil().DateToString(new Date()));
                 materialdirService.add(materialdir);
                 System.out.println("=========上传文件成功======");
                 this.write(response,true);
@@ -107,12 +105,12 @@ public class FileController extends BaseController{
                 System.out.println("=========上传文件失败=====");
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     @RequestMapping(value = "/down.do",method = RequestMethod.POST,produces = "application/octet-stream;charset=UTF-8")
     @ResponseBody
-    public  ResponseEntity<byte[]> FileDown(HttpServletRequest request) throws IOException{
+    public  void/*ResponseEntity<byte[]>*/ FileDown(HttpServletRequest request) throws IOException{
         //项目id、所需下载的文件名称
         Integer proid = Integer.valueOf(request.getParameter("proid"));
         String fileName = request.getParameter("materialname");
@@ -121,7 +119,8 @@ public class FileController extends BaseController{
         Integer materialdirid = projectService.findOneById(proid).getMaterialdirid();
         //获得此材料的保存前路径
         String path = materialdirService.findOneBydirIdAndName(fileName,materialdirid).getMaterialurl();
-        //全路径 = 前路径+文件名
+       //=============================================================================================
+       /* //全路径 = 前路径+文件名
         File file = new File(path+"\\"+fileName);
         //设置下载浏览器响应的文件名
         String dfileName = fileName;
@@ -135,7 +134,8 @@ public class FileController extends BaseController{
         //设置响应文件
         headers.setContentDispositionFormData("attachment",dfileName);
         //把文件以二进制形式写回
-        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.CREATED);
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.CREATED);*/
+
 
     }
 

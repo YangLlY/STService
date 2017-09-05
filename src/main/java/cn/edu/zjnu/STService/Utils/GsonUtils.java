@@ -3,6 +3,7 @@ package cn.edu.zjnu.STService.Utils;
 import com.google.gson.*;
 import com.google.gson.internal.ConstructorConstructor;
 import com.google.gson.internal.bind.CollectionTypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -169,6 +171,52 @@ public class GsonUtils {
 	public <V> V jsonRequest2Bean(final InputStream input, Class<V> clazz) throws IOException {
 		String json = IOUtils.toString(input, "UTF-8");
 		return toBean(json, clazz);
+	}
+	/**
+	 * 转成list
+	 *
+	 * @param gsonString
+	 * @param cls
+	 * @return
+	 */
+	public static <T> List<T> GsonToList(String gsonString, Class<T> cls) {
+		List<T> list = null;
+		if (gson != null) {
+			list = gson.fromJson(gsonString, new TypeToken<List<T>>() {
+			}.getType());
+		}
+		return list;
+	}
+
+	/**
+	 * 转成list中有map的
+	 *
+	 * @param gsonString
+	 * @return
+	 */
+	public static <T> List<Map<String, T>> GsonToListMaps(String gsonString) {
+		List<Map<String, T>> list = null;
+		if (gson != null) {
+			list = gson.fromJson(gsonString,
+					new TypeToken<List<Map<String, T>>>() {
+					}.getType());
+		}
+		return list;
+	}
+
+	/**
+	 * 转成map的
+	 *
+	 * @param gsonString
+	 * @return
+	 */
+	public static <T> Map<String, T> GsonToMaps(String gsonString) {
+		Map<String, T> map = null;
+		if (gson != null) {
+			map = gson.fromJson(gsonString, new TypeToken<Map<String, T>>() {
+			}.getType());
+		}
+		return map;
 	}
 
 }
